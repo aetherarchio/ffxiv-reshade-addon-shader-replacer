@@ -1,6 +1,4 @@
----
-# [ARCHIVE]
----
+<!-- # [ARCHIVE] -->
 
 > [!WARNING]
 > This has **not been validaded** after the extensive game engine reworks introduced in version 7.0 and above. This project exists as-is.
