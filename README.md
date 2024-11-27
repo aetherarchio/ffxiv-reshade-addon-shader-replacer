@@ -37,6 +37,7 @@ _No ReShade shaders, only default and add-on._
 ### Installation/Usage:
 
 1. Download/clone the repository and extract the files.
+    - Alternatively, download the latest `ShaderReplacer.zip` [from releases](https://github.com/aetherarchio/ffxiv-reshade-addon-shader-replacer/releases).
 2. The `ShaderFixes` folder goes to your FFXIV installation inside the `game` folder, alongside the `ffxiv_dx11.exe`.
 3. `shader_replace.addon` goes into your Add-on search path directory. <br>
    You can configure that in the Add-ons tab in the in-game ReShade interface, [as shown here](.assets/addon-search-path.png).
