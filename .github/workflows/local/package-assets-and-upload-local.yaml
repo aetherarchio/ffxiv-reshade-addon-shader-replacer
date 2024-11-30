@@ -1,0 +1,40 @@
+name: Package Assets and Upload (Local)
+
+on:
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Check out repository
+              uses: actions/checkout@v2
+
+            - name: Set release version
+              run: echo "RELEASE_VERSION=$(date +%s)" >> $GITHUB_ENV
+
+            - name: Stage GitHub Release Event (Local)
+              run: |
+                  mkdir -p .github/events
+                  echo "Staged release event for v1.0.${{ env.RELEASE_VERSION }}"
+                  echo "{\"action\": \"published\", \"release\": {\"tag_name\": \"v1.0.${{ env.RELEASE_VERSION }}\", \"name\": \"Shader Replacer version 1.0.${{ env.RELEASE_VERSION }}\", \"body\": \"Released by Package Repository Assets and Upload workflow.\", \"prerelease\": false}, \"repository\": {\"name\": \"repository\", \"full_name\": \"username/repository\"}}" > .github/events/release_event.json
+
+            - name: Create ShaderReplacer.zip archive
+              run: |
+                  zip -r ShaderReplacer.zip ShaderFixes shader_replace.addon
+
+            - name: Stage Release Creation
+              id: create_release
+              run: |
+                  echo "Staged release creation for v1.0.${{ env.RELEASE_VERSION }}"
+
+            - name: Stage Uploading ShaderReplacer.zip
+              run: |
+                  echo "Staged upload of ShaderReplacer.zip to release v1.0.${{ env.RELEASE_VERSION }}"
+
+            - name: Output Release Files
+              run: |
+                  mkdir -p .releases/${{ env.RELEASE_VERSION }}
+                  mv ShaderReplacer.zip .releases/${{ env.RELEASE_VERSION }}/
+                  echo "Release v1.0.${{ env.RELEASE_VERSION }} is packaged and uploaded locally!"
